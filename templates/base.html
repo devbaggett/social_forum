@@ -6,10 +6,42 @@
 	<title>Social Forum</title>
 	<meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {# bootstrap #}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Audiowide|El+Messiri" rel="stylesheet">
+	{# Master CSS #}
+	<link rel="stylesheet" href="{% static 'css/master.css' %}">
+
 </head>
 <body>
-	{% block content %}
+	{# NAVBAR #}
+	<nav class="navbar mynav" role="navigation" id='navbar'>
+		<div class="container">
+			<a class='navbar-brand mynav' href="{% url 'home' %}">Social Forum</a>
+			<ul class="nav navbar-nav navbar-right">
+				{% if user.is_authenticated %}
+					<li><a href="#">Post</a></li>
+					<li><a href="#">Groups</a></li>
+					<li><a href="#">Create Group</a></li>
+					<li><a href="{% url 'accounts_app:logout' %}">Logout</a></li>
+				{% else %}
+					<li><a href="#">Groups</a></li>
+					<li><a href="{% url 'accounts_app:login' %}">Log In</a></li>
+					<li><a href="{% url 'accounts_app:signup' %}">Sign Up</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+	
+	{# CONTENT #}
+	<div class="container">
+		{% block content %}
+			
+		{% endblock %}
+	</div>
 
-	{% endblock %}
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
 </html>
