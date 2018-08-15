@@ -9,7 +9,8 @@ from . import forms
 
 
 class SignUp(CreateView):
-	form_class = forms.UserCreateForm
-	# reverse back to login page once they signedup
-	success_url = reverse_lazy('login')
-	template_name = 'accounts/signup.html'
+    form_class = forms.UserCreateForm
+    # reverse back to login page once they signedup
+    success_url = reverse_lazy('login')
+    template_name = 'accounts_app/signup.html'
+
