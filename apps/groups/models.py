@@ -4,7 +4,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.conf import settings
+from django.core.urlresolvers import reverse
 # remove any chars that aren't alphanumeric, lowercase, remove dashes
 from django.utils.text import slugify
 
@@ -31,10 +32,10 @@ class Group(models.Model):
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 		self.description_html = misaka.html(self.description)
-		super().save(*args,**kwargs)
+		super(Group, self).save(*args,**kwargs)
 
 	def get_absolute_url(self):
-		return reverse('groups:single', kwargs={'slug:self.slug'})
+		return reverse('groups:single', kwargs={'slug':self.slug})
 
 	class Meta:
 		ordering = ['name']

@@ -1,13 +1,13 @@
 from django.db import models
 from django.conf import settings
-from django.core.url_resolvers import reverse
+from django.core.urlresolvers import reverse
 
 # connect posts to group
-from groups.models import Group
+from ..groups.models import Group
 
 # connect current post to whoever's logged in
 from django.contrib.auth import get_user_model
-User = get_user_model
+User = get_user_model()
 
 import misaka
 
@@ -32,5 +32,5 @@ class Post(models.Model):
 	class Meta:
 		ordering = ['-created_at']
 		# every message is uniquely linked to a user
-		unique_together = ['user', 'message']
+		# unique_together = ['user', 'message']
 
